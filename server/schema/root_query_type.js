@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 const TaskType = require('./task_type');
-const IngredientType = require('./ingredient_type');
-const Ingredient = mongoose.model('ingredient');
+const BreakdownType = require('./breakdown_type');
+const Breakdown = mongoose.model('breakdown');
 const Task = mongoose.model('task');
 
 const RootQuery = new GraphQLObjectType({
@@ -22,11 +22,11 @@ const RootQuery = new GraphQLObjectType({
         return Task.findById(id);
       }
     },
-    Ingredient: {
-      type: IngredientType,
+    Breakdown: {
+      type: BreakdownType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, { id }) {
-        return Ingredient.findById(id);
+        return Breakdown.findById(id);
       }
     }
   })

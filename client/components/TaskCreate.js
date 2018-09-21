@@ -13,7 +13,9 @@ class TaskCreate extends Component {
         this.state={title:''}
     }
 
-//what to do onSubmit
+
+//what to do onSubmit here
+
     onSubmit(){
         //prevent it doing what it normally does
         event.preventDefault();

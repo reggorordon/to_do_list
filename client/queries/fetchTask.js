@@ -5,7 +5,7 @@ export default gql`
     task(id: $id) {
       id
       title
-      ingredients {
+      breakdowns {
         id
         content
         likes

@@ -2,9 +2,9 @@ const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
 const mongoose = require('mongoose');
 const Task = mongoose.model('task');
-const Ingredient = mongoose.model('ingredient');
+const Breakdown = mongoose.model('breakdown');
 const TaskType = require('./task_type');
-const IngredientType = require('./ingredient_type');
+const BreakdownType = require('./breakdown_type');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -18,21 +18,21 @@ const mutation = new GraphQLObjectType({
         return (new Task({ title })).save()
       }
     },
-    addIngredientToTask: {
+    addBreakdownToTask: {
       type: TaskType,
       args: {
         content: { type: GraphQLString },
         taskId: { type: GraphQLID }
       },
       resolve(parentValue, { content, taskId }) {
-        return Task.addIngredient(taskId, content);
+        return Task.addBreakdown(taskId, content);
       }
     },
-    likeIngredient: {
-      type: IngredientType,
+    likeBreakdown: {
+      type: BreakdownType,
       args: { id: { type: GraphQLID } },
       resolve(parentValue, { id }) {
-        return Ingredient.like(id);
+        return Breakdown.like(id);
       }
     },
 

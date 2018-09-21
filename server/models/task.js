@@ -7,28 +7,28 @@ const TaskSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
-  ingredients: [{
+  breakdowns: [{
     type: Schema.Types.ObjectId,
-    ref: 'ingredient'
+    ref: 'breakdown'
   }]
 });
 
-TaskSchema.statics.addIngredient = function(id, content) {
-  const Ingredient = mongoose.model('ingredient');
+TaskSchema.statics.addBreakdown = function(id, content) {
+  const Breakdown = mongoose.model('breakdown');
 
   return this.findById(id)
     .then(task => {
-      const ingredient = new Ingredient({ content, task })
-      task.ingredients =task.ingredients.concat(ingredient)
-      return Promise.all([ingredient.save(), task.save()])
-        .then(([ingredient, task]) => task);
+      const breakdown = new Breakdown({ content, task })
+      task.breakdown =task.breakdowns.concat(breakdown)
+      return Promise.all([breakdown.save(), task.save()])
+        .then(([breakdown, task]) => task);
     });
 }
 
-TaskSchema.statics.findIngredients = function(id) {
+TaskSchema.statics.findBreakdowns = function(id) {
   return this.findById(id)
-    .populate('ingredients')
-    .then(task => task.ingredients);
+    .populate('breakdowns')
+    .then(task => task.breakdowns);
 }
 
 mongoose.model('task', TaskSchema);

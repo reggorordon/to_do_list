@@ -7,10 +7,10 @@ const {
   GraphQLInt,
   GraphQLString
 } = graphql;
-const Ingredient = mongoose.model('ingredient');
+const Breakdown = mongoose.model('breakdown');
 
-const IngredientType = new GraphQLObjectType({
-  name:  'IngredientType',
+const BreakdownType = new GraphQLObjectType({
+  name:  'BreakdownType',
   fields: () => ({
     id: { type: GraphQLID },
     likes: { type: GraphQLInt },
@@ -18,14 +18,14 @@ const IngredientType = new GraphQLObjectType({
     task : {
       type: require('./task_type'),
       resolve(parentValue) {
-        return Ingredient.findById(parentValue).populate('task')
-          .then(ingredient => {
-            console.log(ingredient)
-            return ingredient.task
+        return Breakdown.findById(parentValue).populate('task')
+          .then(breakdown => {
+            console.log(breakdown)
+            return breakdown.task
           });
       }
     }
   })
 });
 
-module.exports = IngredientType;
+module.exports = BreakdownType;

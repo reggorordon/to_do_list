@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
-const IngredientType = require('./ingredient_type');
+const BreakdownType = require('./breakdown_type');
 const Task = mongoose.model('task');
 
 const TaskType = new GraphQLObjectType({
@@ -9,10 +9,10 @@ const TaskType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
-    ingredients: {
-      type: new GraphQLList(IngredientType),
+    breakdowns: {
+      type: new GraphQLList(BreakdownType),
       resolve(parentValue) {
-        return Task.findIngredients(parentValue.id);
+        return Task.findBreakdowns(parentValue.id);
       }
     }
   })
