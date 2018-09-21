@@ -1,5 +1,5 @@
 {
-  "name": "Tasks",
+  "name": "tasks",
   "version": "1.0.0",
   "description": "Basic to do list based around Stephen griders excellent course",
   "main": "index.js",

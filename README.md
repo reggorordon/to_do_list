@@ -15,9 +15,10 @@ https://github.com/reggorordon/to_do_list/blob/master/server/server.js#L12
 
 to run:
 
-
-run `npm init`
- and 
+in terminal type
+`npm install`
+`npm init`
+ and finally
 `npm run dev`
 
 visit :
