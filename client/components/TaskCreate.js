@@ -17,9 +17,12 @@ class TaskCreate extends Component {
 //what to do onSubmit here
 
     onSubmit(){
-        //prevent it doing what it normally does
+        //prevent it doing what it normally does( not sure why need to look that up)
+
         event.preventDefault();
-        //create a mutation based on what was already prepared
+
+        //create a mutation based on the mutation on the server 
+
         this.props.mutate({
             variables:{ title: this.state.title}, 
             refetchQueries:[{query}],})
@@ -30,27 +33,35 @@ class TaskCreate extends Component {
         return(
             //steps: 
             // onChange pushes the change to the form ( sort of)
-            //onSubmit pushes the data to the db
+            // onSubmit pushes the data to the DB
 
-        <div>
-            <form onSubmit={this.onSubmit.bind(this)}>
+            <div>
+                
+            
+            <br/>
+            <br/>
+            <div className="center-align">
+                <form onSubmit={this.onSubmit.bind(this)}>
                     <label> <h4>Enter the task you need to complete:</h4></label>
                     <input
                         onChange={event => this.setState({ title: event.target.value })}
                         value={this.state.title}
                     />
+                </form>
+                </div>
 
-            </form>
-              {/* <Link
-                    to="/"
-                    className="btn-floating btn-large green right"
-              > Home</Link> */}
+            <div>
+                <Link to="/" className="btn-floating btn-large green left">
+                    Home
+                </Link>
+            </div >
+              
         </div>
         )
     }
 }
 
-// define mutation here ( actual name doesnt mean much but facilitates tracking)
+// define mutation here ( actual name of mutation doesnt mean much but facilitates tracking)
 const mutation = gql `
 mutation AddTask($title:String){
     addTask(title:$title){

@@ -13,7 +13,7 @@ class TaskList extends Component {
     };
 
     renderTasks() {
-        //bit of destructuring
+        //bit of destructuring( still need to look this up)
         return this.props.data.tasks.map(({ title,id }) => {
             return (
                 <li key={id} className="collection-item">
@@ -23,7 +23,7 @@ class TaskList extends Component {
             );
         });
     }
-    //display list of all tasks
+    //display list of all tasks. using the loading  case prevents errors
     render() {
         if (this.props.data.loading) {
             return (
@@ -34,14 +34,15 @@ class TaskList extends Component {
         }
         return (
             // the LINK comes from react Router and is pretty cool
-            <div>
+            <div className="center-align">
                 
-                <h3>These are the tasks I need to do today</h3>
+                <h4>These are the tasks I need to do today:</h4>
+                <h5 >{new Date().toDateString()} </h5> 
                 <ul className ="collection">
                     {this.renderTasks()}
                 </ul>
                 <Link to="/tasks/new"className="btn-floating btn-large red right">
-                    add
+                    <i className ="material-icons">add</i>
                 </Link>
             </div>
         )
