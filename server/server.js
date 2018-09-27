@@ -2,22 +2,16 @@ const express = require('express');
 const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
-
 const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
-
+/** instantiating app as express app to enable it to use express features */
 const app = express();
 
 // Replace with your mongoLab URI
 const MONGO_URI = 'mongodb://tasktester:tasktester1@ds263642.mlab.com:63642/tasks';
-
-
-
-
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI');
 }
-
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URI);
 mongoose.connection

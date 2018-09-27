@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import ApolloClient from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
-
 import App from './components/App';
 import TaskList from './components/TaskList';
 import TaskCreate from './components/TaskCreate';
@@ -13,8 +12,6 @@ import Task from './components/Task';
 const client = new ApolloClient({
   dataIdFromObject: o => o.id
 });
-
-
 //lovely navigations from React Router
 const Root = () => {
   return (
@@ -29,7 +26,6 @@ const Root = () => {
     </ApolloProvider>
   );
 };
-
 ReactDOM.render(
   <Root />,
   document.querySelector('#root')

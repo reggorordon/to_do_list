@@ -17,7 +17,7 @@ class TaskList extends Component {
         return this.props.data.tasks.map(({ title,id }) => {
             return (
                 <li key={id} className="collection-item">
-                    {title}
+                    <Link to={"/task/"+id}>{title}</Link> 
                     <i className="material-icons" onClick={() => this.onTaskDelete(id)}>delete</i>
                 </li>
             );
@@ -41,7 +41,7 @@ class TaskList extends Component {
                 <ul className ="collection">
                     {this.renderTasks()}
                 </ul>
-                <Link to="/tasks/new"className="btn-floating btn-large red right">
+                <Link to="/tasks/new"className="btn-floating btn-large green right">
                     <i className ="material-icons">add</i>
                 </Link>
             </div>
