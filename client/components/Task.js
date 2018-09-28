@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {graphql} from 'react-apollo'
 import fetchTask from '../queries/fetchTask';
 import {Link} from 'react-router';
+import BreakdownCreate from './BreakdownCreate';
+import BreakdownList from './BreakdownList';
 
 class Task extends Component {
 
@@ -15,9 +17,12 @@ class Task extends Component {
         return(
             <div className="center-align">
             <h3>{task.title}</h3>
-                <Link to="/" className="btn-floating btn-large red right">
-                   Back 
-                </Link>
+            
+            <BreakdownList breakdowns={task.breakdowns} />
+            <BreakdownCreate taskId={this.props.params.id} />
+            <Link to="/" className="btn-floating btn-large red right">
+              Back 
+            </Link>
             </div>
 
         )

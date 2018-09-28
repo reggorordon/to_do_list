@@ -1,0 +1,61 @@
+import React,{Component} from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+class BreakdownList extends Component{
+    onLike(id, likes) {
+        this.props.mutate({
+            variables: { id },
+            optimisticResponse: {
+                __typename: 'Mutation',
+                likeBreakdown: {
+                    id,
+                    __typename: 'BreakdownType',
+                    likes: likes + 1
+                }
+            }
+        });
+    }
+
+
+    renderBreakdown(){
+        return this.props.breakdowns.map(({id,content, likes}) => {
+        return(
+            <li key={id} className="collection-item">
+                {content}
+                <div className="vote-box">
+                    <i
+                        className="material-icons"
+                        onClick={() => this.onLike(id, likes)}
+                    >
+                        thumb_up
+            </i>
+                    {likes}
+                </div>
+            </li>
+        )
+    });
+}
+    render() {
+    return(
+        <ul className="collection">
+            {this.renderBreakdown()}
+        </ul>
+    );
+}
+}
+
+
+
+const mutation = gql`
+  mutation LikeBreakdown($id: ID) {
+    likeBreakdown(id: $id) {
+      id
+      likes
+    }
+  }
+`;
+
+
+
+export default graphql(mutation)(BreakdownList);

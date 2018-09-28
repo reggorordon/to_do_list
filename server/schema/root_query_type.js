@@ -22,7 +22,7 @@ const RootQuery = new GraphQLObjectType({
         return Task.findById(id);
       }
     },
-    Breakdown: {
+    breakdown: {
       type: BreakdownType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, { id }) {

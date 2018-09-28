@@ -19,7 +19,7 @@ TaskSchema.statics.addBreakdown = function(id, content) {
   return this.findById(id)
     .then(task => {
       const breakdown = new Breakdown({ content, task })
-      task.breakdown =task.breakdowns.concat(breakdown)
+      task.breakdowns =task.breakdowns.concat(breakdown)
       return Promise.all([breakdown.save(), task.save()])
         .then(([breakdown, task]) => task);
     });
