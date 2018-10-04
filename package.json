@@ -8,7 +8,8 @@
     "url": "https://github.com/reggorordon/to_do_list"
   },
   "scripts": {
-    "dev": "nodemon index.js --ignore client"
+    "dev": "nodemon index.js --ignore client",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
