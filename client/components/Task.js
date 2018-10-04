@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-apollo'
-import fetchTask from '../queries/fetchTask';
 import {Link} from 'react-router';
 import BreakdownCreate from './BreakdownCreate';
 import BreakdownList from './BreakdownList';
+
+import query from '../queries/fetchTask';
 
 class Task extends Component {
 
@@ -30,6 +31,6 @@ class Task extends Component {
 }
 /**this is so ugly */
 
-export default graphql(fetchTask, {
+export default graphql(query, {
     options: (props) => { return { variables: { id: props.params.id } } }
 })(Task);
